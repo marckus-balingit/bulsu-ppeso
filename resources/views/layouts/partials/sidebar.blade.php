@@ -50,10 +50,10 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a class="nav-link"><i class="fas fa-users"></i> <p>Users</p></a>
+              <a href="/users" class="nav-link"><i class="fas fa-users"></i> <p>Users</p></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"><i class="fas fa-users"></i> <p>Students</p></a>
+              <a href="/students" class="nav-link"><i class="fas fa-users"></i> <p>Students</p></a>
             </li>
             <li class="nav-item">
               <a class="nav-link"><i class="fas fa-users"></i> <p>Employers</p></a>
@@ -68,7 +68,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a class="nav-link"><i class="fas fa-graduation-cap"></i> <p>College</p></a>
+              <a href="/college" class="nav-link"><i class="fas fa-graduation-cap"></i> <p>College</p></a>
             </li>
             <li class="nav-item">
               <a class="nav-link"><i class="fas fa-book"></i> <p>Courses</p></a>
