@@ -23,6 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // COLLEGES
 Route::resource('/college', 'CollegeController')->except('show');
+Route::get('/college/{id}','CollegeController@show')->name('college.show');
+// COURSES
+Route::resource('/course', 'CourseController')->except('show');
 
 Route::view('/users', 'admin.users.index');
 Route::view('/students', 'admin.students.index');

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', config('app.company_name').' - College')
+@section('title', config('app.company_name').' - Course')
 
 @section('content_header')
 {{-- <h1>Users</h1> --}}
@@ -11,6 +11,7 @@
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a> System Setup</a></li>
         <li class="breadcrumb-item">College</li>
+        <li class="breadcrumb-item">Course</li>
     </ol>
 </div>
 @endsection
@@ -20,11 +21,12 @@
         <div class="col-md-12">
             <div class="card card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">College</h3>
+                    <h3 class="card-title">{{ $college->name }}</h3>
                 </div>
                 
                 <div class="card-body">
-                    <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-add"><i class="fa fa-plus"></i> Add New College</button>
+                    <a href="{{ route('college.index') }}" class="btn btn-danger btn-sm"> Back</a>
+                    <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-add"><i class="fa fa-plus"></i> Add New Course</button>
                     <div class="btn-group float-right mr-1" role="group">
                         <button class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-import"></i> Bulk Upload</button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
@@ -37,38 +39,29 @@
                         <table id="table" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    {{-- <th>Logo</th> --}}
-                                    <th>Name</th>
-                                    <th>Abbreviation</th>
-                                    <th>Courses</th>
+                                    <th>Course</th>
                                     <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($colleges as $college)
+                                @foreach ($college->course as $course)
                                     <tr>
-                                        {{-- <td></td> --}}
-                                        <td>{{ $college->name }}</td>
-                                        <td>{{ $college->abbreviate() }}</td>
+                                        <td>{{ $course->name }}</td>
+                                        <td>{{ $course->diffForHumans() }}</td>
                                         <td>
-                                            <ul>
-                                                @forelse ($college->course as $course)
-                                                    <li>{{ $course->name }}</li>
-                                                @empty
-                                                    <li>No Courses</li>
-                                                @endforelse
-                                            </ul>
-                                        </td>
-                                        <td>{{ $college->diffForHumans() }}</td>
-                                        <td>
-                                            <a href="{{ route('college.show',$college->id) }}" class="btn btn-outline-primary btn-sm" ><i class="fa fa-book"></i></a>
                                             <button class="btn btn-outline-success btn-sm btnEdit"
-                                                data-id ="{{ $college->id}}"
-                                                data-abbreviation ="{{ $college->abbreviation}}"
-                                                data-name ="{{ $college->name}}"
+                                                data-id ="{{ $course->id}}"
+                                                data-name ="{{ $course->name}}"
                                             ><i class="fa fa-edit"></i></button>
-                                            <button class="btn btn-outline-danger btn-sm btnDelete"><i class="fa fa-trash"></i></button>
+                                            <form action="" method="post" class="d-inline" id="frm-course-delete">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="college_id" value="{{ $college->id }}">
+                                                <button type="button" class="btn btn-outline-danger btn-sm btnDelete"
+                                                onclick="deleteFunction('course','{{ route('course.destroy',$course->id) }}','{{ $course->name }}')"
+                                                ><i class="fa fa-trash"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -85,25 +78,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title">Add College</h5>
+                    <h5 class="modal-title" id="modal-title">Add Course</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('college.store') }}" method="post">
+                <form action="{{ route('course.store') }}" method="post">
                     @csrf
+                    <input type="hidden" name="college_id" value="{{ $college->id }}">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>College</label>
-                            <input type="text" class="form-control" placeholder="College" required name="name">
-                        </div>
-                        <div class="form-group">
-                            <label>Abbreviation</label>
-                            <input type="text" class="form-control" placeholder="Abbreviation" required name="abbreviation">
-                        </div>
-                        <div class="form-group">
-                            <label>Logo</label>
-                            <input type="file" class="form-control-file" id="customFile" placeholder="Logo" name="file_logo">
+                            <label>Course</label>
+                            <input type="text" class="form-control" placeholder="Course" required name="name">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -119,7 +105,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title">Edit College</h5>
+                    <h5 class="modal-title" id="modal-title">Edit Course</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -127,18 +113,11 @@
                 <form action="" method="post" id="frm-edit">
                     @csrf
                     @method('PATCH')
+                    <input type="hidden" name="college_id" value="{{ $college->id }}">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>College</label>
-                            <input type="text" class="form-control" placeholder="College" required name="name" id="frm-name">
-                        </div>
-                        <div class="form-group">
-                            <label>Abbreviation</label>
-                            <input type="text" class="form-control" placeholder="Abbreviation" required name="abbreviation" id="frm-abbreviation">
-                        </div>
-                        <div class="form-group">
-                            <label>Logo</label>
-                            <input type="file" class="form-control-file" id="customFile" placeholder="Logo" name="file_logo" id="frm-file_logo">
+                            <label>Course</label>
+                            <input type="text" class="form-control" placeholder="Course" required name="name" id="frm-name">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -159,14 +138,10 @@
         $(document).on('click','.btnEdit',function(){
             var id = $(this).data('id');
             var name = $(this).data('name');
-            var abbreviation = $(this).data('abbreviation');
-            // var file_logo = $(this).data('file_logo');
-            var url = '{{ route("college.update", ":id") }}';
+            var url = '{{ route("course.update", ":id") }}';
             url = url.replace(':id',id);
 
             $("#frm-name").val(name);
-            $("#frm-abbreviation").val(abbreviation);
-            // $("#frm-file_logo").val(file_logo);
             $("#frm-edit").attr("action",url);
 
             $("#modal-edit").modal();

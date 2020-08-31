@@ -81,37 +81,44 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/generic.js":
-/*!*********************************!*\
-  !*** ./resources/js/generic.js ***!
-  \*********************************/
+/***/ "./resources/js/custom.js":
+/*!********************************!*\
+  !*** ./resources/js/custom.js ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(function () {
-  // Select 2
-  $(".cbo").css('width', '100%');
-  $('.cbo').select2({
-    placeholder: $(this).data("placeholder"),
-    allowClear: $(this).data("allow-clear")
+window.deleteFunction = function (module, route, name) {
+  Swal.fire({
+    title: 'Are you sure?',
+    html: "Are you sure you want to delete this ".concat(module, " <b>").concat(name, "</b>"),
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#dbd5d5',
+    confirmButtonText: 'Confirm'
+  }).then(function (result) {
+    if (result.value) {
+      $("#frm-".concat(module, "-delete")).attr('action', route).submit();
+    }
   });
-});
+};
 
 /***/ }),
 
-/***/ 2:
-/*!***************************************!*\
-  !*** multi ./resources/js/generic.js ***!
-  \***************************************/
+/***/ 1:
+/*!**************************************!*\
+  !*** multi ./resources/js/custom.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\bulsu-ppeso\resources\js\generic.js */"./resources/js/generic.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\bulsu-ppeso\resources\js\custom.js */"./resources/js/custom.js");
 
 
 /***/ })

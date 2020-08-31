@@ -54,19 +54,9 @@ class CollegeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(College $college)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\College  $college
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(College $college)
-    {
-        //
+    {        
+        $college = College::find(request()->id);
+        return view('admin.course.index',compact('college'));
     }
 
     /**
@@ -78,7 +68,13 @@ class CollegeController extends Controller
      */
     public function update(Request $request, College $college)
     {
-        //
+        $inputs = $this->requestValidate();
+        $result = $college->update($inputs);
+        if ($result) {
+            return redirect()->route('college.index')->with('success', 'College updated successfully.');
+        } else {
+            return redirect()->route('college.index')->with('danger', 'Failed to update College');
+        }
     }
 
     /**

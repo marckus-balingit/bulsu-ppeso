@@ -9,6 +9,11 @@ class College extends Model
 {
     protected $fillable = ['name','abbreviation','file_logo'];
 
+    public function course()
+    {
+        return $this->hasMany(Course::class, 'college_id','id');
+    }
+
     public function abbreviate()
     {
         return strtoupper($this->abbreviation);
