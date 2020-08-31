@@ -111,7 +111,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\bulsu-ppeso\resources\js\generic.js */"./resources/js/generic.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel\practice\resources\js\generic.js */"./resources/js/generic.js");
 
 
 /***/ })

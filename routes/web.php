@@ -21,8 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// COLLEGES
+Route::resource('/college', 'CollegeController')->except('show');
 
-Route::view('/users','admin.users.index');
-Route::view('/students','admin.students.index');
-Route::view('/college','admin.college.index');
+Route::view('/users', 'admin.users.index');
+Route::view('/students', 'admin.students.index');
+// Route::view('/college', 'admin.college.index');
 // Route::resource('/user',)

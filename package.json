@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.14.0",
+        "datatables.net-bs4": "^1.10.21",
         "font-awesome": "^4.7.0",
         "select2": "^4.0.13",
         "sweetalert2": "^9.17.1"

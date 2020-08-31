@@ -10,6 +10,8 @@ try {
     window.$ = window.jQuery = require('jquery');
     window.Swal = require('sweetalert2');
     require('select2/dist/js/select2.min.js');
+    require('datatables.net/js/jquery.dataTables.min.js');
+    require('datatables.net-bs4/js/dataTables.bootstrap4.min.js');
     require('bootstrap');
 } catch (e) {}
 
