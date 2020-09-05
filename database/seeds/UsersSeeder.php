@@ -15,12 +15,11 @@ class UsersSeeder extends Seeder
     {
         $users = [
             [
-              'name' => 'Marckus Balingit',
-              'email' => 'philipfry32@gmail.com',
-              'contact_number' => '09454294527',
+              'email' => 'student1@bulsu.com',
               'email_verified_at' => now(),
               'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
               'remember_token' => Str::random(10),
+              'role_id' => 2 // STUDENT
             ]
         ];
 

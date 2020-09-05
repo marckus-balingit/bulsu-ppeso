@@ -1,7 +1,8 @@
 <?php
 
 namespace App;
-
+use App\Student;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,9 +16,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $fillable = ['email', 'password'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,4 +35,27 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'user_id','id');
+    }
+
+    public function getRoleAttribute()
+    {
+        $id = $this->role_id;
+        if($id==1){
+            $role = "Admin";
+        }else if($id==2){
+            $role = "Student";
+        }else{
+            $role = "Employer";
+        }
+        return $role;
+    }
+
+    public function diffForHumans()
+    {
+        return Carbon::parse($this->created_at)->diffForHumans();
+    }
 }

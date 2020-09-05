@@ -3,7 +3,7 @@
 @endphp
 <aside class="main-sidebar sidebar-dark-primary elevation-1">
   <div class="d-flex justify-content-center">
-    <a href="index3.html" class="brand-link">
+    <a href="/home" class="brand-link">
       <img src="{{ asset('img/rocket-icon.png') }}" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">BULSU - PPESO</span>
     </a>
@@ -12,7 +12,7 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column sidebar-collapse" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <a class="nav-link"><i class="fas fa-tachometer-alt"></i> <p>Dashboard</p></a>
+          <a href="/home" class="nav-link"><i class="fas fa-tachometer-alt"></i> <p>Dashboard</p></a>
         </li>
 
         <!-- ============================================================================== -->
@@ -46,17 +46,17 @@
         <!-- ============================================================================== -->
         <li class="nav-header">ADMINISTRATOR</li>
         <!-- ------------------------------------------------------------------------------ -->
-        <li class="nav-item has-treeview">
-          <a class="nav-link nav-item" href="#">
+        <li class="nav-item has-treeview {{ in_array($url,['users','students']) ? 'menu-open' : '' }}">
+          <a class="nav-link nav-item {{ in_array($url,['users','students']) ? 'active' : '' }}" href="#">
             <i class="fas fa-users-cog"></i>
             <p>User Management <i class="fas fa-angle-left right"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/users" class="nav-link"><i class="fas fa-users"></i> <p>Users</p></a>
+              <a href="/users" class="nav-link {{ $url == "users" ? 'active' : '' }}"><i class="fas fa-users"></i> <p>Users</p></a>
             </li>
             <li class="nav-item">
-              <a href="/students" class="nav-link"><i class="fas fa-users"></i> <p>Students</p></a>
+              <a href="/students" class="nav-link {{ $url == "students" ? 'active' : '' }}"><i class="fas fa-users"></i> <Up>Students</p></a>
             </li>
             <li class="nav-item">
               <a class="nav-link"><i class="fas fa-users"></i> <p>Employers</p></a>
@@ -74,10 +74,7 @@
               <a href="/college" class="nav-link {{ $url == "college" ? 'active' : '' }}"><i class="fas fa-graduation-cap"></i> <p>College</p></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"><i class="fas fa-book"></i> <p>Field of Study</p></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"><i class="fas fa-book"></i> <p>Specialization</p></a>
+              <a class="nav-link"><i class="fas fa-book"></i> <p>Job Specialization</p></a>
             </li>
             <li class="nav-item">
               <a class="nav-link"><i class="fas fa-calendar"></i> <p>Events</p></a>

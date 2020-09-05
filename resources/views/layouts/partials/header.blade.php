@@ -13,13 +13,13 @@
       </li>
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+          <span class="d-none d-md-inline">{{ Auth::user()->student->name }}</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-primary">
             <p>
-               {{ Auth::user()->name }}
+               {{ Auth::user()->student->name }}
               {{-- <small>Member since {{ date_format(date_create(Auth::user()->created_at), 'F Y') }}</small> --}}
             </p>
           </li>

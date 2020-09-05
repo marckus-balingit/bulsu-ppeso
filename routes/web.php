@@ -26,8 +26,12 @@ Route::resource('/college', 'CollegeController')->except('show');
 Route::get('/college/{id}','CollegeController@show')->name('college.show');
 // COURSES
 Route::resource('/course', 'CourseController')->except('show');
+// USERS
+Route::resource('/users', 'UserController')->except('show');
+// STUDENTS
+Route::resource('/students', 'StudentController')->except('show');
 
-Route::view('/users', 'admin.users.index');
-Route::view('/students', 'admin.students.index');
-// Route::view('/college', 'admin.college.index');
+// Route::view('/users', 'admin.users.index');
+// Route::view('/students', 'admin.students.index');
+Route::view('/study', 'admin.study.index');
 // Route::resource('/user',)

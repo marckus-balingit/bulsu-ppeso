@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', config('app.company_name').' - User Management')
+@section('title', config('app.company_name').' - Students')
 
 @section('content_header')
 {{-- <h1>Users</h1> --}}
@@ -38,13 +38,27 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
+                                    <th>College</th>
+                                    <th>Course</th>
                                     <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                @foreach ($students as $student)
+                                    <tr>
+                                        <td>{{ $student->name }}</td>
+                                        <td>{{ $student->college == null ? 'Not Assigned' : $student->college->name }}</td>
+                                        <td>{{ $student->course == null ? 'Not Assigned' : $student->course->name }}</td>
+                                        <td>{{ $student->diffForHumans()}}</td>
+                                        <td>
+                                            <button class="btn btn-outline-success btn-sm btnEditStudent"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-outline-warning btn-sm"><i class="fa fa-user"></i></button>
+                                            <button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>

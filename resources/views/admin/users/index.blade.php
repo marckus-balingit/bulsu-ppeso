@@ -16,6 +16,7 @@
 @endsection
   
 @section('body')
+{{-- {{ dd($) }} --}}
     <div class="row">
         <div class="col-md-12">
             <div class="card card-outline">
@@ -31,13 +32,27 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Username</th>
                                     <th>Email</th>
                                     <th>Role</th>
                                     <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                @foreach ($users as $row)
+                                    <tr>
+                                        <td>{{ $row->student->name}}</td>
+                                        <td>{{ $row->email}}</td>
+                                        <td>{{ $row->role}}</td>
+                                        <td>{{ $row->diffForHumans()}}</td>
+                                        <td>
+                                            <button class="btn btn-outline-success btn-sm btnEditStudent"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-outline-warning btn-sm"><i class="fa fa-user"></i></button>
+                                            <button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>
