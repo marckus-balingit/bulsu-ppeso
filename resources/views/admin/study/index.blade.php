@@ -25,13 +25,6 @@
                 
                 <div class="card-body">
                     <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-add"><i class="fa fa-plus"></i> Add New Specialization</button>
-                    <div class="btn-group float-right mr-1" role="group">
-                        <button class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-import"></i> Bulk Upload</button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#">Download Template</a>
-                        <a class="dropdown-item" href="#">Import Template</a>
-                        </div>
-                    </div>
                     <br><br>
                     <div class="table-responsive">
                         <table id="table" class="table table-bordered table-striped">
@@ -44,6 +37,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($specials as $special)
+                                    <tr>
+                                        <td>{{ $special->id }}</td>
+                                        <td>{{ $special->name }}</td>
+                                        <td>{{ $special->created_at }}</td>
+                                        <td>
+                                            <button class="btn btn-outline-success btn-sm btnEdit"><i class="fa fa-edit"></i></button>
+                                            <form action="" method="post" class="d-inline" id="frm-specialization-delete">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="id" value="{{ $special->id }}">
+                                                <button type="button" class="btn btn-outline-danger btn-sm btnDelete"
+                                                onclick="deleteFunction('specialization','{{ route('study.destroy',$special->id) }}','{{ $special->name }}')"
+                                                ><i class="fa fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>                    
@@ -57,25 +68,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title">Add College</h5>
+                    <h5 class="modal-title" id="modal-title">Add Specialization</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('college.store') }}" method="post">
+                <form action="{{ route('study.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>College</label>
-                            <input type="text" class="form-control" placeholder="College" required name="name">
-                        </div>
-                        <div class="form-group">
-                            <label>Abbreviation</label>
-                            <input type="text" class="form-control" placeholder="Abbreviation" required name="abbreviation">
-                        </div>
-                        <div class="form-group">
-                            <label>Logo</label>
-                            <input type="file" class="form-control-file" id="customFile" placeholder="Logo" name="file_logo">
+                            <label>Specialization</label>
+                            <input type="text" class="form-control" placeholder="Name" required name="name">
                         </div>
                     </div>
                     <div class="modal-footer">

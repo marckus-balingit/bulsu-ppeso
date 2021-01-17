@@ -7,7 +7,7 @@
   <title>@yield('title', 'CRM')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="{{ asset('img/ce_logo1.png') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('img/rocket-icon.png') }}" type="image/x-icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
   <!-- Ionicons -->
