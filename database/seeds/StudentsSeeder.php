@@ -14,8 +14,6 @@ class StudentsSeeder extends Seeder
         $students = [
             [
               'user_id' => '1',
-              'firstname' => "Student",
-              'lastname' => 'One',
             ]
         ];
 

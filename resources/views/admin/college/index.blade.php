@@ -28,8 +28,8 @@
                     <div class="btn-group float-right mr-1" role="group">
                         <button class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-import"></i> Bulk Upload</button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                          <a class="dropdown-item" href="#">Download Template</a>
-                          <a class="dropdown-item" href="#">Import Template</a>
+                          <a class="dropdown-item" href="{{ asset('templates/College Template (Bulk Upload).xlsx') }}">Download Template</a>                          
+                          <button class="dropdown-item" data-toggle="modal" data-target="#modal-upload">Import Template</button>
                         </div>
                     </div>
                     <br><br>
@@ -139,6 +139,34 @@
                         <div class="form-group">
                             <label>Logo</label>
                             <input type="file" class="form-control-file" id="customFile" placeholder="Logo" name="file_logo" id="frm-file_logo">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-upload">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">College Bulk Upload</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('college.import') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="uploaded-file">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -47,7 +47,7 @@
                             <tbody>
                                 @foreach ($students as $student)
                                     <tr>
-                                        <td>{{ $student->name }}</td>
+                                        <td>{{ $student->user->getNameAttribute() }}</td>
                                         <td>{{ $student->college == null ? 'Not Assigned' : $student->college->name }}</td>
                                         <td>{{ $student->course == null ? 'Not Assigned' : $student->course->name }}</td>
                                         <td>{{ $student->diffForHumans()}}</td>

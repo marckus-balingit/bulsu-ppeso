@@ -7,7 +7,7 @@
 @section('body')
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ route('home') }}"><b>BulSU</b> PPESO</a>
+    <b>BulSU</b> PPESO
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -61,9 +61,9 @@
       <p class="mb-1">
         <a href="{{ route('password.request') }}"> {{ __('Forgot Your Password?') }}</a>
       </p>
-      {{-- <p class="mb-0">
+      <p class="mb-0">
         <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
-      </p> --}}
+      </p>
     </div>
     <!-- /.login-card-body -->
   </div>

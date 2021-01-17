@@ -77,6 +77,11 @@ class CollegeController extends Controller
         }
     }
 
+    function fileUpload(College $college)
+    {
+        # code...
+    }
+
     /**
      * Remove the specified resource from storage.
      *

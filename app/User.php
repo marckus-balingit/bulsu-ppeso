@@ -16,7 +16,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['email', 'password'];
+    protected $fillable = ['first_name','last_name','email', 'password','role_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -35,6 +35,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
 
     public function student()
     {

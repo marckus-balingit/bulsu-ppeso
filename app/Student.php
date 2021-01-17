@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['user_id','firstname','middlename','lastname'];
+    protected $fillable = ['user_id'];
+
+    public function user()
+    {
+        return $this->hasOne(User::class,'id','user_id');
+    }
 
     public function getNameAttribute()
     {

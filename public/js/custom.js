@@ -118,7 +118,7 @@ window.deleteFunction = function (module, route, name) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\bulsu-ppeso\resources\js\custom.js */"./resources/js/custom.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\practice\bulsu-ppeso\resources\js\custom.js */"./resources/js/custom.js");
 
 
 /***/ })

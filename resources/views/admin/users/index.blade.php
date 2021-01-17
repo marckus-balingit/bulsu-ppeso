@@ -25,7 +25,7 @@
                 </div>
                 
                 <div class="card-body">
-                    <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-user"><i class="fa fa-plus"></i> Add New User</button><br><br>
+                    {{-- <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-user"><i class="fa fa-plus"></i> Add New User</button><br><br> --}}
                     
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
@@ -41,7 +41,7 @@
                             <tbody>
                                 @foreach ($users as $row)
                                     <tr>
-                                        <td>{{ $row->student->name}}</td>
+                                        <td>{{ $row->getNameAttribute()}}</td>
                                         <td>{{ $row->email}}</td>
                                         <td>{{ $row->role}}</td>
                                         <td>{{ $row->diffForHumans()}}</td>
@@ -69,8 +69,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form action="" method="post">
+                <form action="{{ route('users.store') }}" method="post">
+                    @csrf
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -116,12 +117,12 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

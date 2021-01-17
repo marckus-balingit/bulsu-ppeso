@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // COLLEGES
 Route::resource('/college', 'CollegeController')->except('show');
 Route::get('/college/{id}','CollegeController@show')->name('college.show');
+Route::post('/college/import','CollegeImportController@store')->name('college.import');
 // COURSES
 Route::resource('/course', 'CourseController')->except('show');
 // USERS

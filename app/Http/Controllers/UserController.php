@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -35,7 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(request());
     }
 
     /**
@@ -82,4 +83,14 @@ class UserController extends Controller
     {
         //
     }
+
+    // protected function validator()
+    // {
+    //     return Validator::make($data, [
+    //         // 'first_name' => ['required', 'string', 'max:255'],
+    //         // 'last_name' => ['required', 'string', 'max:255'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
+    //     ]);
+    // }
 }
