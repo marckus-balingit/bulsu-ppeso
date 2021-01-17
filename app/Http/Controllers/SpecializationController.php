@@ -76,7 +76,14 @@ class SpecializationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $inputs = $this->requestValidate();
+        $specialization = Specialization::find($id);
+        $result = $specialization->update(['name'=>$request->name]);
+        if ($result) {
+            return redirect()->route('study.index')->with('success', 'Specialization updated successfully.');
+        } else {
+            return redirect()->route('study.index')->with('danger', 'Failed to update specialization.');
+        }
     }
 
     /**
@@ -85,11 +92,9 @@ class SpecializationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        dd($request);
-        $specialization = Specialization::find($request->id);
-        
+        $specialization = Specialization::find($id);
         $result = $specialization->delete();
         if ($result) {
             return redirect()->route('study.index')->with('success', 'Specialization deleted successfully.');

@@ -31,8 +31,5 @@ Route::resource('/course', 'CourseController')->except('show');
 Route::resource('/users', 'UserController')->except('show');
 // STUDENTS
 Route::resource('/students', 'StudentController')->except('show');
-
-// Route::view('/users', 'admin.users.index');
-// Route::view('/students', 'admin.students.index');
+// SPECIALIZATIONS
 Route::resource('/study','SpecializationController')->except('show');
-// Route::resource('/user',)

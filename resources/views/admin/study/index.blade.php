@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', config('app.company_name').' - College')
+@section('title', config('app.company_name').' - Specialization')
 
 @section('content_header')
 {{-- <h1>Users</h1> --}}
@@ -43,7 +43,7 @@
                                         <td>{{ $special->name }}</td>
                                         <td>{{ $special->created_at }}</td>
                                         <td>
-                                            <button class="btn btn-outline-success btn-sm btnEdit"><i class="fa fa-edit"></i></button>
+                                        <button class="btn btn-outline-success btn-sm btnEdit" data-id="{{ $special->id }}" data-name="{{ $special->name }}"><i class="fa fa-edit"></i></button>
                                             <form action="" method="post" class="d-inline" id="frm-specialization-delete">
                                                 @csrf
                                                 @method('DELETE')
@@ -94,7 +94,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title">Edit College</h5>
+                    <h5 class="modal-title" id="modal-title">Edit Specialization</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -104,16 +104,8 @@
                     @method('PATCH')
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>College</label>
-                            <input type="text" class="form-control" placeholder="College" required name="name" id="frm-name">
-                        </div>
-                        <div class="form-group">
-                            <label>Abbreviation</label>
-                            <input type="text" class="form-control" placeholder="Abbreviation" required name="abbreviation" id="frm-abbreviation">
-                        </div>
-                        <div class="form-group">
-                            <label>Logo</label>
-                            <input type="file" class="form-control-file" id="customFile" placeholder="Logo" name="file_logo" id="frm-file_logo">
+                            <label>Specialization</label>
+                            <input type="text" class="form-control" placeholder="Name" required name="name" id="frm-name">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -134,13 +126,10 @@
         $(document).on('click','.btnEdit',function(){
             var id = $(this).data('id');
             var name = $(this).data('name');
-            var abbreviation = $(this).data('abbreviation');
-            // var file_logo = $(this).data('file_logo');
-            var url = '{{ route("college.update", ":id") }}';
+            var url = '{{ route("study.update", ":id") }}';
             url = url.replace(':id',id);
 
             $("#frm-name").val(name);
-            $("#frm-abbreviation").val(abbreviation);
             // $("#frm-file_logo").val(file_logo);
             $("#frm-edit").attr("action",url);
 
